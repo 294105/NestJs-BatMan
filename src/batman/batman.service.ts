@@ -18,4 +18,25 @@ export class BatmanService {
     const movie = this.movieRepo.create({ title, year });
     return this.movieRepo.save(movie);
   }
+
+  getMovieById(id: number) {
+    return this.movieRepo.findOneBy({ id });
+  }
+
+  async updateMovie(id: number, title: string, year: number) {
+    const movie = await this.movieRepo.findOneBy({ id });
+    if (!movie) return { message: 'Movie not found' };
+
+    movie.title = title;
+    movie.year = year;
+    return this.movieRepo.save(movie);
+  }
+
+  async deleteMovie(id: number) {
+    const result = await this.movieRepo.delete(id);
+    if (result.affected === 0) {
+      return { message: 'Movie not found' };
+    }
+    return { message: 'Movie deleted successfully' };
+  }
 }
