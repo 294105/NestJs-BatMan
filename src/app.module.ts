@@ -10,7 +10,7 @@ import { BatmanMovie } from './batman/batman.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'pass@word1',
+      password: 'pass@word1',   
       database: 'batman_db',
       entities: [BatmanMovie],
       synchronize: true, // set to false in production
